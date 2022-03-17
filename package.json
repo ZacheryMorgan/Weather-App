@@ -8,8 +8,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
-    "lint": "eslint 'src/**/*.js' || true",
-    "prettify": "prettier --write 'src/**/*.js'"
+    "lint": "eslint **/*.js || true",
+    "prettify": "prettier --write **/*.js "
   },
   "keywords": [
     "webpack",
@@ -32,10 +32,10 @@
     "eslint-plugin-prettier": "^4.0.0",
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^2.4.2",
-    "sass": "^1.43.5",
     "postcss-loader": "^6.2.0",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.4.1",
+    "sass": "^1.43.5",
     "sass-loader": "^12.2.0",
     "style-loader": "^3.3.0",
     "webpack": "^5.58.2",
@@ -45,6 +45,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:taniarascia/webpack-boilerplate"
+    "url": "git+ssh://git@github.com/taniarascia/webpack-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/taniarascia/webpack-boilerplate/issues"
+  },
+  "homepage": "https://github.com/taniarascia/webpack-boilerplate#readme",
+  "dependencies": {
+    "bourbon": "^7.2.0",
+    "core-js": "^3.21.1",
+    "regenerator-runtime": "^0.13.9",
+    "thpace": "^1.3.0"
   }
 }
