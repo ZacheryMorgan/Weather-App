@@ -14,7 +14,7 @@ module.exports = {
     filename: '[name].bundle.js',
     publicPath: '/',
   },
-
+// C:\Users\NewHs\Documents\Projects\TOP_Weather_Api
   // Customize the webpack build process
   plugins: [
     // Removes/cleans build folders and unused assets when rebuilding
