@@ -1,9 +1,9 @@
 {
-  "name": "webpack-boilerplate",
+  "name": "weather-app",
   "version": "3.0.1",
-  "description": "Sensible webpack 5 boilerplate using Babel and PostCSS.",
+  "description": "Weather application for The Odin Project",
   "main": "index.js",
-  "author": "Tania Rascia",
+  "author": "Zachery Shawne",
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
@@ -12,9 +12,11 @@
     "prettify": "prettier --write **/*.js "
   },
   "keywords": [
-    "webpack",
-    "webpack 5",
-    "webpack boilerplate"
+    "The Odin Project",
+    "TOP",
+    "API",
+    "Webpack",
+    "Weather"
   ],
   "devDependencies": {
     "@babel/core": "^7.15.8",
@@ -45,12 +47,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/taniarascia/webpack-boilerplate.git"
+    "url": "git+ssh://git@github.com/zacheryshawne/weather-app.git"
   },
   "bugs": {
-    "url": "https://github.com/taniarascia/webpack-boilerplate/issues"
+    "url": "https://github.com/zacheryshawne/weather-app/issues"
   },
-  "homepage": "https://github.com/taniarascia/webpack-boilerplate#readme",
+  "homepage": "https://github.com/zacheryshawne/weather-app#readme",
   "dependencies": {
     "bourbon": "^7.2.0",
     "core-js": "^3.21.1",
