@@ -132,37 +132,93 @@ async function hourly(data) {
     const hourlyWind = document.createElement('span')
     hourlyWind.classList.add('hourly-wind', 'wind')
     hourlyWind.textContent = `${mphToKph(data.hourly[i].wind_speed)}`
-    // hourlyWind.textContent = `${Math.floor(data.hourly[i].wind_speed)}mph`
 
     hourlyWrapper.append(hourlyTime, hourlyTemp, hourlyWind)
     sliderWrapper.appendChild(hourlyWrapper)
   }
+  // const x = window.matchMedia("(max-width: 675px)")
+  let x = window.matchMedia('(max-width: 675px)')
 
-  const left = document.createElement('div')
-  left.classList.add('slider-left', 'slider')
+  const sliderBtns = document.createElement('div')
+  const myFnc = (x) => {
+    // Media query
 
-  left.addEventListener('click', () => {
-    sliderWrapper.style.marginLeft = '0'
-    left.style.backgroundColor = 'white'
-    left.style.border = 'none'
+    const left = document.createElement('div')
+    left.classList.add('slider-left', 'slider')
 
-    right.style.border = '2px solid white'
-    right.style.backgroundColor = 'inherit'
-  })
+    left.addEventListener('click', () => {
+      sliderWrapper.style.marginLeft = '0'
+      left.style.backgroundColor = 'white'
+      left.style.border = 'none'
 
-  const right = document.createElement('div')
-  right.classList.add('slider-right', 'slider')
+      right.style.border = '2px solid white'
+      right.style.backgroundColor = 'inherit'
+      right3.style.border = '2px solid white'
+      right3.style.backgroundColor = 'inherit'
+      right2.style.border = '2px solid white'
+      right2.style.backgroundColor = 'inherit'
+    })
 
-  right.addEventListener('click', () => {
-    sliderWrapper.style.marginLeft = 'calc(-100% - 23px)'
-    right.style.backgroundColor = 'white'
-    right.style.border = 'none'
+    const right = document.createElement('div')
+    right.classList.add('slider-right', 'slider')
 
-    left.style.border = '2px solid white'
-    left.style.backgroundColor = 'inherit'
-  })
+    right.addEventListener('click', () => {
+      sliderWrapper.style.marginLeft = 'calc(-100% - 23px)'
+      right.style.backgroundColor = 'white'
+      right.style.border = 'none'
 
-  wrapper.append(left, right, sliderWrapper)
+      left.style.border = '2px solid white'
+      left.style.backgroundColor = 'inherit'
+      right3.style.border = '2px solid white'
+      right3.style.backgroundColor = 'inherit'
+      right2.style.border = '2px solid white'
+      right2.style.backgroundColor = 'inherit'
+    })
+
+    const right2 = document.createElement('div')
+    right2.classList.add('slider-right-2', 'slider')
+
+    right2.addEventListener('click', () => {
+      sliderWrapper.style.marginLeft = 'calc(-200% - 23px)'
+      right2.style.backgroundColor = 'white'
+      right2.style.border = 'none'
+
+      left.style.border = '2px solid white'
+      left.style.backgroundColor = 'inherit'
+      right.style.border = '2px solid white'
+      right.style.backgroundColor = 'inherit'
+      right3.style.border = '2px solid white'
+      right3.style.backgroundColor = 'inherit'
+    })
+
+    const right3 = document.createElement('div')
+    right3.classList.add('slider-right-3', 'slider')
+
+    right3.addEventListener('click', () => {
+      sliderWrapper.style.marginLeft = 'calc(-300% - 23px)'
+      right3.style.backgroundColor = 'white'
+      right3.style.border = 'none'
+
+      left.style.border = '2px solid white'
+      left.style.backgroundColor = 'inherit'
+      right.style.border = '2px solid white'
+      right.style.backgroundColor = 'inherit'
+      right2.style.border = '2px solid white'
+      right2.style.backgroundColor = 'inherit'
+    })
+
+    if (x.matches) {
+      sliderWrapper.style.marginLeft = '0'
+      sliderBtns.replaceChildren(left, right, right2, right3)
+    } else {
+      sliderWrapper.style.marginLeft = '0'
+      sliderBtns.replaceChildren(left, right)
+    }
+  }
+  myFnc(x)
+  x.addEventListener('change', myFnc)
+
+  wrapper.append(sliderBtns, sliderWrapper)
   app.appendChild(wrapper)
 
   return app

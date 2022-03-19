@@ -164,6 +164,16 @@ h1 {
       border: 2px solid white
     }
 
+    .slider-right-2 {
+      background-color: none;
+      border: 2px solid white
+    }
+
+    .slider-right-3 {
+      background-color: none;
+      border: 2px solid white
+    }
+
     .slider {
       cursor: pointer;
       display: inline-block;
@@ -247,3 +257,41 @@ h1 {
   }
 
 }
+
+@media only screen and (max-width: 675px) {
+  #root {
+    .header-wrapper {
+      width: auto;
+      column-gap: 0;
+      font-size: .7em;
+
+      .convert-btn {
+        font-size: 2.3em;
+      }
+
+      :nth-child(odd) {
+        padding-left: 10px;
+      }
+
+      :nth-child(even) {
+        margin-right: 10px;
+      }
+
+      :nth-child(1) {
+        padding-left: 10px;
+        margin-left: 20px;
+      }
+    }
+
+    .body-wrapper {
+      font-size: .8em;
+      width: 522.225px;
+    }
+
+    .footer-wrapper {
+      gap: 20px;
+    }
+  }
+}
+
+// 2089px width
