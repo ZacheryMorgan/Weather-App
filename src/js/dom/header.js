@@ -1,8 +1,8 @@
 import { forecastByCityState } from '../api'
-import { kToF, timeConversion } from '../utils/conversions'
+import { kToF, mphToKph, timeConversion } from '../utils/conversions'
+import { convertBtn } from './/searchbar'
 
-// const iconUrl = (x) => `http://openweathermap.org/img/wn/${x}@2x.png`
-
+// Load dom with search data
 async function callDisplays(x, city) {
   const data = await forecastByCityState(x)
   function removeAllChildNodes(parent) {
@@ -17,6 +17,7 @@ async function callDisplays(x, city) {
   await daily(data)
 }
 
+// Load dom with default city 'Wilmington' on page load
 async function defaultDisplay(x, city) {
   const data = await forecastByCityState(x)
   await current(data, city)
@@ -40,7 +41,7 @@ async function current(data, city) {
 
   const wind = document.createElement('span')
   wind.classList.add('current-wind')
-  wind.textContent = `Winds: ${Math.floor(data.current.wind_speed)}mph`
+  wind.textContent = `Winds: ${mphToKph(data.current.wind_speed)}`
 
   const weatherDescription = document.createElement('span')
   weatherDescription.classList.add('current-weather-description')
@@ -55,8 +56,12 @@ async function current(data, city) {
   clouds.textContent = `Cloudy: ${data.current.clouds}%`
 
   const feelsLike = document.createElement('span')
-  feelsLike.classList.add('current-feelsLike')
-  feelsLike.textContent = `Feels like: ${data.current.feels_like}need to convert`
+  feelsLike.classList.add('current-feels-like')
+  feelsLike.textContent = `Feels like: ${kToF(data.current.feels_like)}`
+
+  const pressure = document.createElement('span')
+  pressure.classList.add('current-pressure')
+  pressure.textContent = `${data.current.pressure}hPa`
 
   const currentTime = document.createElement('span')
   currentTime.classList.add('current-time')
@@ -81,7 +86,18 @@ async function current(data, city) {
   // weatherIcon.classList.add('current-weather-icon')
   // weatherIcon.src = iconUrl(data.current.weather[0].icon)
 
-  wrapper.append(cityName, temp, feelsLike, wind, humidity, clouds, weatherDescription, currentTime)
+  wrapper.append(
+    cityName,
+    convertBtn(),
+    temp,
+    feelsLike,
+    wind,
+    humidity,
+    clouds,
+    pressure,
+    weatherDescription,
+    currentTime
+  )
   app.appendChild(wrapper)
 
   return app
@@ -114,8 +130,9 @@ async function hourly(data) {
     hourlyTemp.textContent = `${kToF(data.hourly[i].temp)}`
 
     const hourlyWind = document.createElement('span')
-    hourlyWind.classList.add('hourly-wind')
-    hourlyWind.textContent = `${Math.floor(data.hourly[i].wind_speed)}mph`
+    hourlyWind.classList.add('hourly-wind', 'wind')
+    hourlyWind.textContent = `${mphToKph(data.hourly[i].wind_speed)}`
+    // hourlyWind.textContent = `${Math.floor(data.hourly[i].wind_speed)}mph`
 
     hourlyWrapper.append(hourlyTime, hourlyTemp, hourlyWind)
     sliderWrapper.appendChild(hourlyWrapper)
@@ -165,15 +182,15 @@ async function daily(data) {
 
     const dailyTime = document.createElement('span')
     dailyTime.classList.add('daily-time')
-    dailyTime.textContent = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(fullTime)
+    dailyTime.textContent = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(fullTime)
 
     const dailyTemp = document.createElement('span')
     dailyTemp.classList.add('daily-temp', 'temp')
     dailyTemp.textContent = `${kToF((data.daily[i].temp.max + data.daily[1].temp.min) / 2)}`
 
     const dailyWind = document.createElement('span')
-    dailyWind.classList.add('daily-wind')
-    dailyWind.textContent = `${Math.floor(data.daily[i].wind_speed)}mph`
+    dailyWind.classList.add('daily-wind', 'wind')
+    dailyWind.textContent = `${mphToKph(data.hourly[i].wind_speed)}`
 
     dailyWrapper.append(dailyTime, dailyTemp, dailyWind)
     wrapper.appendChild(dailyWrapper)
