@@ -258,7 +258,21 @@ h1 {
 
 }
 
-@media only screen and (max-width: 675px) {
+// 2089px for whole div
+// 1044.5px for 2 buttons
+// 696.33px for 3 buttons
+
+@media only screen and (max-width: 1080px) {
+  #root {
+    .body-wrapper {
+      width: 696.33px
+    }
+  }
+}
+
+
+
+@media only screen and (max-width: 715px) {
   #root {
     .header-wrapper {
       width: auto;
@@ -293,5 +307,19 @@ h1 {
     }
   }
 }
+@media only screen and (max-width: 515px) {
+  #root {
+    .body-wrapper {
+      width: 403px;
 
+      .slider-wrapper {
+        gap: 5px;
+      }
+    }
+
+    .footer-wrapper {
+      gap: 10px;
+    }
+  }
+}
 // 2089px width

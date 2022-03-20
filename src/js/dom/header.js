@@ -137,86 +137,247 @@ async function hourly(data) {
     sliderWrapper.appendChild(hourlyWrapper)
   }
   // const x = window.matchMedia("(max-width: 675px)")
-  let x = window.matchMedia('(max-width: 675px)')
+
+  // 418.225px
 
   const sliderBtns = document.createElement('div')
-  const myFnc = (x) => {
-    // Media query
 
-    const left = document.createElement('div')
-    left.classList.add('slider-left', 'slider')
+  // Media query
 
-    left.addEventListener('click', () => {
+  const left = document.createElement('div')
+  left.classList.add('slider-left', 'slider')
+
+  left.addEventListener('click', () => {
+    sliderWrapper.style.marginLeft = '0'
+    left.style.backgroundColor = 'white'
+    left.style.border = 'none'
+
+    right.style.border = '2px solid white'
+    right.style.backgroundColor = 'inherit'
+    right3.style.border = '2px solid white'
+    right3.style.backgroundColor = 'inherit'
+    right2.style.border = '2px solid white'
+    right2.style.backgroundColor = 'inherit'
+  })
+
+  const right = document.createElement('div')
+  right.classList.add('slider-right', 'slider')
+
+  right.addEventListener('click', () => {
+    sliderWrapper.style.marginLeft = 'calc(-100% - 23px)'
+    right.style.backgroundColor = 'white'
+    right.style.border = 'none'
+
+    left.style.border = '2px solid white'
+    left.style.backgroundColor = 'inherit'
+    right3.style.border = '2px solid white'
+    right3.style.backgroundColor = 'inherit'
+    right2.style.border = '2px solid white'
+    right2.style.backgroundColor = 'inherit'
+  })
+
+  const right2 = document.createElement('div')
+  right2.classList.add('slider-right-2', 'slider')
+
+  right2.addEventListener('click', () => {
+    sliderWrapper.style.marginLeft = 'calc(-200% - 23px)'
+    right2.style.backgroundColor = 'white'
+    right2.style.border = 'none'
+
+    left.style.border = '2px solid white'
+    left.style.backgroundColor = 'inherit'
+    right.style.border = '2px solid white'
+    right.style.backgroundColor = 'inherit'
+    right3.style.border = '2px solid white'
+    right3.style.backgroundColor = 'inherit'
+  })
+
+  const right3 = document.createElement('div')
+  right3.classList.add('slider-right-3', 'slider')
+
+  right3.addEventListener('click', () => {
+    sliderWrapper.style.marginLeft = 'calc(-300% - 33px)'
+    right3.style.backgroundColor = 'white'
+    right3.style.border = 'none'
+
+    left.style.border = '2px solid white'
+    left.style.backgroundColor = 'inherit'
+    right.style.border = '2px solid white'
+    right.style.backgroundColor = 'inherit'
+    right2.style.border = '2px solid white'
+    right2.style.backgroundColor = 'inherit'
+  })
+
+  const screen = {
+    small: null,
+    smallMed: window.matchMedia('(min-width: 515px)'),
+    medium: window.matchMedia('(min-width: 715px)'),
+    large: window.matchMedia('(min-width: 1080px)'),
+  }
+
+  // add media query events
+  for (let [scr, mq] of Object.entries(screen)) {
+    if (mq) mq.addEventListener('change', mqHandler)
+  }
+
+  // first event
+  mqHandler()
+
+  // media query handler function
+  function mqHandler() {
+    let size = null
+    for (let [scr, mq] of Object.entries(screen)) {
+      if (!mq || mq.matches) size = scr
+    }
+
+    if (size === 'small') {
+      sliderWrapper.style.marginLeft = '0'
+      sliderBtns.replaceChildren(left, right, right2, right3)
+      left.style.backgroundColor = 'white'
+      left.style.border = 'none'
+      right.style.border = '2px solid white'
+      right.style.backgroundColor = 'inherit'
+      right3.style.border = '2px solid white'
+      right3.style.backgroundColor = 'inherit'
+      right2.style.border = '2px solid white'
+      right2.style.backgroundColor = 'inherit'
+
+      right.addEventListener('click', () => {
+        sliderWrapper.style.marginLeft = 'calc(-100% - 19px)'
+        right.style.backgroundColor = 'white'
+        right.style.border = 'none'
+
+        left.style.border = '2px solid white'
+        left.style.backgroundColor = 'inherit'
+        right3.style.border = '2px solid white'
+        right3.style.backgroundColor = 'inherit'
+        right2.style.border = '2px solid white'
+        right2.style.backgroundColor = 'inherit'
+      })
+
+      right2.addEventListener('click', () => {
+        sliderWrapper.style.marginLeft = 'calc(-200% - 23px)'
+        right2.style.backgroundColor = 'white'
+        right2.style.border = 'none'
+
+        left.style.border = '2px solid white'
+        left.style.backgroundColor = 'inherit'
+        right.style.border = '2px solid white'
+        right.style.backgroundColor = 'inherit'
+        right3.style.border = '2px solid white'
+        right3.style.backgroundColor = 'inherit'
+      })
+
+      right3.addEventListener('click', () => {
+        sliderWrapper.style.marginLeft = 'calc(-300% - 37px)'
+        right3.style.backgroundColor = 'white'
+        right3.style.border = 'none'
+
+        left.style.border = '2px solid white'
+        left.style.backgroundColor = 'inherit'
+        right.style.border = '2px solid white'
+        right.style.backgroundColor = 'inherit'
+        right2.style.border = '2px solid white'
+        right2.style.backgroundColor = 'inherit'
+      })
+    } else if (size === 'smallMed') {
       sliderWrapper.style.marginLeft = '0'
       left.style.backgroundColor = 'white'
       left.style.border = 'none'
-
       right.style.border = '2px solid white'
       right.style.backgroundColor = 'inherit'
       right3.style.border = '2px solid white'
       right3.style.backgroundColor = 'inherit'
       right2.style.border = '2px solid white'
       right2.style.backgroundColor = 'inherit'
-    })
 
-    const right = document.createElement('div')
-    right.classList.add('slider-right', 'slider')
+      right.addEventListener('click', () => {
+        sliderWrapper.style.marginLeft = 'calc(-100% - 8px)'
+        right.style.backgroundColor = 'white'
+        right.style.border = 'none'
 
-    right.addEventListener('click', () => {
-      sliderWrapper.style.marginLeft = 'calc(-100% - 23px)'
-      right.style.backgroundColor = 'white'
-      right.style.border = 'none'
+        left.style.border = '2px solid white'
+        left.style.backgroundColor = 'inherit'
+        right3.style.border = '2px solid white'
+        right3.style.backgroundColor = 'inherit'
+        right2.style.border = '2px solid white'
+        right2.style.backgroundColor = 'inherit'
+      })
 
-      left.style.border = '2px solid white'
-      left.style.backgroundColor = 'inherit'
-      right3.style.border = '2px solid white'
-      right3.style.backgroundColor = 'inherit'
-      right2.style.border = '2px solid white'
-      right2.style.backgroundColor = 'inherit'
-    })
+      right2.addEventListener('click', () => {
+        sliderWrapper.style.marginLeft = 'calc(-200% - 23px)'
+        right2.style.backgroundColor = 'white'
+        right2.style.border = 'none'
 
-    const right2 = document.createElement('div')
-    right2.classList.add('slider-right-2', 'slider')
+        left.style.border = '2px solid white'
+        left.style.backgroundColor = 'inherit'
+        right.style.border = '2px solid white'
+        right.style.backgroundColor = 'inherit'
+        right3.style.border = '2px solid white'
+        right3.style.backgroundColor = 'inherit'
+      })
 
-    right2.addEventListener('click', () => {
-      sliderWrapper.style.marginLeft = 'calc(-200% - 23px)'
-      right2.style.backgroundColor = 'white'
-      right2.style.border = 'none'
+      right3.addEventListener('click', () => {
+        sliderWrapper.style.marginLeft = 'calc(-300% - 33px)'
+        right3.style.backgroundColor = 'white'
+        right3.style.border = 'none'
 
-      left.style.border = '2px solid white'
-      left.style.backgroundColor = 'inherit'
-      right.style.border = '2px solid white'
-      right.style.backgroundColor = 'inherit'
-      right3.style.border = '2px solid white'
-      right3.style.backgroundColor = 'inherit'
-    })
-
-    const right3 = document.createElement('div')
-    right3.classList.add('slider-right-3', 'slider')
-
-    right3.addEventListener('click', () => {
-      sliderWrapper.style.marginLeft = 'calc(-300% - 23px)'
-      right3.style.backgroundColor = 'white'
-      right3.style.border = 'none'
-
-      left.style.border = '2px solid white'
-      left.style.backgroundColor = 'inherit'
-      right.style.border = '2px solid white'
-      right.style.backgroundColor = 'inherit'
-      right2.style.border = '2px solid white'
-      right2.style.backgroundColor = 'inherit'
-    })
-
-    if (x.matches) {
-      sliderWrapper.style.marginLeft = '0'
+        left.style.border = '2px solid white'
+        left.style.backgroundColor = 'inherit'
+        right.style.border = '2px solid white'
+        right.style.backgroundColor = 'inherit'
+        right2.style.border = '2px solid white'
+        right2.style.backgroundColor = 'inherit'
+      })
       sliderBtns.replaceChildren(left, right, right2, right3)
-    } else {
+    } else if (size === 'medium') {
       sliderWrapper.style.marginLeft = '0'
+      left.style.backgroundColor = 'white'
+      left.style.border = 'none'
+      right.style.border = '2px solid white'
+      right.style.backgroundColor = 'inherit'
+      right3.style.border = '2px solid white'
+      right3.style.backgroundColor = 'inherit'
+      right2.style.border = '2px solid white'
+      right2.style.backgroundColor = 'inherit'
+      sliderBtns.replaceChildren(left, right, right2)
+    } else {
+      right.addEventListener('click', () => {
+        sliderWrapper.style.marginLeft = 'calc(-100% - 25px)'
+        right.style.backgroundColor = 'white'
+        right.style.border = 'none'
+
+        left.style.border = '2px solid white'
+        left.style.backgroundColor = 'inherit'
+        right3.style.border = '2px solid white'
+        right3.style.backgroundColor = 'inherit'
+        right2.style.border = '2px solid white'
+        right2.style.backgroundColor = 'inherit'
+      })
+      sliderWrapper.style.marginLeft = '0'
+      left.style.backgroundColor = 'white'
+      left.style.border = 'none'
+      right.style.border = '2px solid white'
+      right.style.backgroundColor = 'inherit'
+      right3.style.border = '2px solid white'
+      right3.style.backgroundColor = 'inherit'
+      right2.style.border = '2px solid white'
+      right2.style.backgroundColor = 'inherit'
       sliderBtns.replaceChildren(left, right)
     }
   }
-  myFnc(x)
-  x.addEventListener('change', myFnc)
+
+  // let x = window.matchMedia('(max-width: 675px)')
+  //   if (x.matches) {
+  //     sliderWrapper.style.marginLeft = '0'
+  //     sliderBtns.replaceChildren(left, right, right2, right3)
+  //   } else {
+  //     sliderWrapper.style.marginLeft = '0'
+  //     sliderBtns.replaceChildren(left, right)
+  //   }
+  // }
+  // myFnc(x)
+  // x.addEventListener('change', myFnc)
 
   wrapper.append(sliderBtns, sliderWrapper)
   app.appendChild(wrapper)
