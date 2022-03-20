@@ -189,6 +189,7 @@ h1 {
   .footer-wrapper {
     display: flex;
     gap: 60px;
+    font-size: 1.4em;
 
     .daily-wrapper {
       display: flex;
@@ -267,6 +268,11 @@ h1 {
     .body-wrapper {
       width: 696.33px
     }
+
+    .footer-wrapper {
+      gap: 25px;
+      font-size: 1.3em;
+    }
   }
 }
 
@@ -298,12 +304,17 @@ h1 {
     }
 
     .body-wrapper {
-      font-size: .8em;
-      width: 522.225px;
+      font-size: .89em;
+      width: 522px;
+
+      .hourly-wrapper {
+        row-gap: 5px;
+      }
     }
 
     .footer-wrapper {
       gap: 20px;
+      font-size: 1.1em
     }
   }
 }
@@ -318,7 +329,24 @@ h1 {
     }
 
     .footer-wrapper {
-      gap: 10px;
+      gap: 15px;
+      font-size: .9em;
+    }
+  }
+}
+@media only screen and (max-width: 410px) {
+  #root {
+    .body-wrapper {
+      width: 336px;
+
+      .slider-wrapper {
+        gap: 5px;
+      }
+    }
+
+    .footer-wrapper {
+      gap: 7px;
+      font-size: .9em;
     }
   }
 }
